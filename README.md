@@ -225,6 +225,24 @@ id：编号，name:名称，url：地址，addtime：创建时间
 id：编号，name:名称，auths：权限列表，addtime：创建时间，admins：管理员外键关联
 ```
 
+定义*管理员* 数据模型：
+
+```
+id：编号，name：管理员名称，pwd：管理员密码，is_super:是否超级管理员，role_id:角色编号，addtime:创建时间，adminlogs:管理员登录日志外键管理，oplogs:操作日志外键关联
+```
+
+定义*管理员登录日志数据* 类型：
+
+```
+id：编号，admin_id:所属管理员编号，ip：最近登录ip地址，addtime：最近登陆时间
+```
+
+定义操作日志：
+
+```
+id：编号，admin_id:所属管理员编号，ip：操作ip地址，reason：操作原因，addtime：创建时间
+```
+
 
 $$
 
