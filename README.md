@@ -124,3 +124,108 @@ from.import admin
 
 
 
+#### Flask的安装及virtualenv的使用
+
+virtualenv使用：
+
+```
+1.创建虚拟环境： virtualenv venv
+2.激活虚拟环境： source venv/bin/activate
+3.退出虚拟环境： deactivate
+```
+
+flask的安装：
+
+```
+1.安装前检测：pip freeze
+2.安装flask： pip install flask
+3.安装后检测： pip freeze
+```
+
+
+
+会员及会员登录日志数据模型设计
+
+```
+1.安装数据库连接依赖包
+
+pip install flask-sqlalchemy
+
+2.定义mysql数据库连接
+from flask_sqlalchemy import SQLAlchemy
+from flask import Flask
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost/movie'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+db = SQLAlchemy(app)
+
+定义会员数据模型：
+class User(db.Model):
+    __tablename__ = "user"
+    id = db.Column(db.Integer, primary_key=True)  # 编号
+    name = db.Column(db.String(100), unique=True)  # 昵称
+    pwd = db.Column(db.String(100))  # 密码
+    email = db.Column(db.String(100), unique=True)  # 邮箱
+    phone = db.Column(db.String(11), unique=True)  # 手机号码
+    info = db.Column(db.Text)  # 个性简介
+    face = db.Column(db.String(255), unique=True)  # 头像
+    addtime = db.Column(db.DateTime, index=True, default=datetime.now)  # 注册时间
+    uuid = db.Column(db.String(255), unique=True)  # 唯一标志符
+    userlogs = db.relationship('Userlog', backref='user')  # 会员日志外键关系关联
+    comments = db.relationship('Comment', backref='user')  # 评论外键关系关联
+    moviecols = db.relationship('Moviecol', backref='user')  # 收藏外键关系关联
+    
+会员登录日志：
+class Userlog(db.Model):
+    __tablename__ = "userlog"
+    id = db.Column(db.Integer, primary_key=True)  # 编号
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # 所属会员
+    ip = db.Column(db.String(100))  # 登录IP
+    addtime = db.Column(db.DateTime, index=True, default=datetime.now)  # 登录时间
+```
+
+标签、电影、上映预告数据模型设计
+
+定义 *标签* 数据模型：
+
+```
+id：编号，name:标题，movies：电影外键关联，addtime：创建时间
+```
+
+定义 *电影* 数据模型：
+
+```
+id:编号，title：电影标题，url：电影地址，info：电影简介，logo：电影封面，star：星级，playnum：电影播放量，commentnum：电影评论量，tag_id:所属标签，area：地区，release_time:发布时间，length：电影长度，addtime：添加时间，comments: 电影评论外键关联，moviecols：电影收藏外键关联
+```
+
+
+
+定义*评论* 数据模型：
+
+```
+id：编号, content:评论内容，movie_id: 所属电影 ，user_id: 所属用户，addtime:最近登录时间
+```
+
+定义*收藏电影* 数据模型：
+
+```
+id：编号，movie_id：所属电影， user_id：所属用户，addtime：最近登录时间
+```
+
+定义*权限* 数据模型：
+
+```
+id：编号，name:名称，url：地址，addtime：创建时间
+```
+
+定义*角色* 数据模型：
+
+```
+id：编号，name:名称，auths：权限列表，addtime：创建时间，admins：管理员外键关联
+```
+
+
+$$
+
+$$
