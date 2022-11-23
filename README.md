@@ -241,3 +241,26 @@ id：编号，admin_id:所属管理员编号，ip：最近登录ip地址，addti
 id：编号，admin_id:所属管理员编号，ip：操作ip地址，reason：操作原因，addtime：创建时间
 ```
 
+#### 前台布局搭建
+
+1.静态文件引入：{{ url_for('static', filename = '文件路径') }}
+
+2.定义路由： {{ url_for('模块名.视图名'，变量=参数)}}
+
+3.定义数据库：{%block 数据库名称 %}...{% endblock %}
+
+笔记：根据nav.html进行改写，写入home.html,index.html
+
+#### 会员登录页面搭建
+
+```
+#登录
+@home.route("/login/")
+def login():
+	return render_template("home/login.html")
+#退出
+@home.route("/logout/")
+def logout():
+	return redirect(url_for('home.login'))
+```
+
