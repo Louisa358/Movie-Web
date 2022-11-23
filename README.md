@@ -292,3 +292,16 @@ def register():
 @home.route("/moviecol/")
 ```
 
+#### 电影列表页面搭建
+
+```
+#列表
+@home.route("/")
+def index():
+	return render_template("home/index.html")
+#动画
+@home.route("/animation/")
+def animation():
+	return render_template("home/animation.html")
+```
+
