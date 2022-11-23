@@ -13,3 +13,7 @@ def login():
 @home.route('/logout/')
 def logout():
     return redirect(url_for("home.login"))
+
+@home.route("/register/")
+def register():
+    return render_template("home/register.html")

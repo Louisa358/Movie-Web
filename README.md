@@ -264,3 +264,12 @@ def logout():
 	return redirect(url_for('home.login'))
 ```
 
+#### 会员注册页面搭建
+
+```
+#注册
+@home.route("/register/")
+def register():
+	return render_template("home/register.html")
+```
+
