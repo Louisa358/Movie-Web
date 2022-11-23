@@ -144,7 +144,7 @@ flask的安装：
 
 
 
-会员及会员登录日志数据模型设计
+#### 会员及会员登录日志数据模型设计
 
 ```
 1.安装数据库连接依赖包
@@ -185,7 +185,7 @@ class Userlog(db.Model):
     addtime = db.Column(db.DateTime, index=True, default=datetime.now)  # 登录时间
 ```
 
-标签、电影、上映预告数据模型设计
+#### 标签、电影、上映预告数据模型设计
 
 定义 *标签* 数据模型：
 
@@ -198,8 +198,6 @@ id：编号，name:标题，movies：电影外键关联，addtime：创建时间
 ```
 id:编号，title：电影标题，url：电影地址，info：电影简介，logo：电影封面，star：星级，playnum：电影播放量，commentnum：电影评论量，tag_id:所属标签，area：地区，release_time:发布时间，length：电影长度，addtime：添加时间，comments: 电影评论外键关联，moviecols：电影收藏外键关联
 ```
-
-
 
 定义*评论* 数据模型：
 
@@ -243,7 +241,3 @@ id：编号，admin_id:所属管理员编号，ip：最近登录ip地址，addti
 id：编号，admin_id:所属管理员编号，ip：操作ip地址，reason：操作原因，addtime：创建时间
 ```
 
-
-$$
-
-$$
