@@ -243,6 +243,7 @@ id：编号，admin_id:所属管理员编号，ip：操作ip地址，reason：�
 
 #### 前台布局搭建
 
+```
 1.静态文件引入：{{ url_for('static', filename = '文件路径') }}
 
 2.定义路由： {{ url_for('模块名.视图名'，变量=参数)}}
@@ -250,6 +251,9 @@ id：编号，admin_id:所属管理员编号，ip：操作ip地址，reason：�
 3.定义数据库：{%block 数据库名称 %}...{% endblock %}
 
 笔记：根据nav.html进行改写，写入home.html,index.html
+```
+
+
 
 #### 会员登录页面搭建
 
@@ -271,5 +275,20 @@ def logout():
 @home.route("/register/")
 def register():
 	return render_template("home/register.html")
+```
+
+#### 会员中心页面搭建
+
+```
+#会员中心
+@home.route("/user/")
+#修改密码
+@home.route("/pwd/")
+#评论记录
+@home.route("/comments/")
+#登陆日志
+@home.route("/loginlog/")
+#收藏电影
+@home.route("/moviecol/")
 ```
 
