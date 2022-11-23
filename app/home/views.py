@@ -2,10 +2,6 @@
 from . import home
 from flask import render_template,redirect,url_for
 
-@home.route('/')
-def index():
-    return render_template("home/index.html")
-
 @home.route('/login/')
 def login():
     return render_template("home/login.html")
@@ -41,3 +37,12 @@ def loginlog():
 @home.route("/moviecol/")
 def moviecol():
     return render_template("home/moviecol.html")
+
+#列表
+@home.route("/")
+def index():
+    return render_template("home/index.html")
+#动画
+@home.route("/animation/")
+def animation():
+    return render_template("home/animation.html")
