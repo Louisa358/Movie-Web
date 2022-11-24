@@ -305,3 +305,30 @@ def animation():
 	return render_template("home/animation.html")
 ```
 
+#### 电影搜索页面搭建
+
+```
+#搜索
+@home.route("/search/")
+def search():
+	return render_template("home/search.html")
+```
+
+#### 电影详情页面搭建
+
+```
+#详情
+@home.route("/play/")
+def play():
+	return render_template("home/play.html")
+```
+
+#### 404页面搭建
+
+```
+#404
+@app.errorhandler(404)
+def page_not_found(error):
+	return render_template("common/404.html"),404
+```
+
