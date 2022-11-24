@@ -241,7 +241,9 @@ id：编号，admin_id:所属管理员编号，ip：最近登录ip地址，addti
 id：编号，admin_id:所属管理员编号，ip：操作ip地址，reason：操作原因，addtime：创建时间
 ```
 
-#### 前台布局搭建
+
+
+# 前台布局搭建
 
 ```
 1.静态文件引入：{{ url_for('static', filename = '文件路径') }}
@@ -330,5 +332,54 @@ def play():
 @app.errorhandler(404)
 def page_not_found(error):
 	return render_template("common/404.html"),404
+```
+
+# 后台页面搭建
+
+#### 管理员登陆页面搭建
+
+```
+#登录
+@admin.route("/login/")
+def login():
+	return render_template("admin/login.html")
+#退出
+@admin.route("/logout/")
+def logout():
+	return redirect(url_for("admin.login")) 
+```
+
+#### 后台布局搭建
+
+```
+#admin.html
+{% block css%}...{% end %}
+{% include "grid.html"%}
+{% block content%}...{% end %}
+{% block js%} ... {% end %}
+
+#其他页面继承父模板
+{% extends "admin/admin.html"%}
+{% block css%} ... {% end %}
+{% include "grid.html"%}
+{% block content %}...{% end %}
+{% block js %}...{% end %}
+```
+
+#### 修改密码
+
+```
+#修改密码
+@admin.route("/pwd/")
+def pwd():
+	return render_template("admin/pwd.html")
+```
+
+#### 控制面板
+
+```
+@admin.route("/")
+def index():
+	return render_template("admin/index.html")
 ```
 
