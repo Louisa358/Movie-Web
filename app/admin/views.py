@@ -1,6 +1,8 @@
 # coding:utf8
 from . import admin
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, flash, session, request
+from app.admin.forms import LoginForm
+from ..models import Admin
 
 
 @admin.route('/')
@@ -8,9 +10,18 @@ def index():
     return render_template("admin/index.html")
 
 #登录
-@admin.route("/login/")
+@admin.route("/login/",methods=["GET","POST"])
 def login():
-    return render_template("admin/login.html")
+    form = LoginForm()
+    if form.validate_on_submit():
+        data = form.data
+        admin = Admin.query.filter_by(name=data["account"]).first()
+        if not admin.check_pwd(data["pwd"]):
+            flash("密码错误")
+            return redirect(url_for("admin.login"))
+        session["admin"] = data["account"]
+        return redirect(request.args.get("next") or url_for("admin.index"))
+    return render_template("admin/login.html",form = form)
 
 #退出
 @admin.route("/logout/")
@@ -98,3 +109,12 @@ def auth_add():
 @admin.route('/auth/list/')
 def auth_list():
     return render_template("admin/auth_list.html")
+
+#添加管理员
+@admin.route('/admin/add/')
+def admin_add():
+    return render_template("admin/admin_add.html")
+#管理员列表
+@admin.route('/admin/list/')
+def admin_list():
+    return render_template("admin/admin_list.html")

@@ -396,3 +396,146 @@ def tag_list():
 	return render_template("admin/tag_list.html")
 ```
 
+#### 电影管理页面搭建
+
+```
+#编辑电影
+@admin.route("/movie/add/")
+def movie_add():
+	return render_template("admin/movie_add.html")
+#电影列表
+@admin.route("/movie/list/")
+def movie_list():
+	return render_template("admin/movie_list.html")
+```
+
+#### 上映预告管理页面搭建
+
+```
+#编辑上映预告
+@admin.route("/preview/add/")
+def preview_add():
+	return render_template("admin/preview_add.html")
+#上映预告列表
+@admin.route("/preview/list/")
+def preview_list():
+	return render_template("admin/preview_list.html")
+```
+
+#### 会员管理页面搭建
+
+```
+#会员列表
+@admin.route("/user/list/")
+def user_list():
+	return render_template("admin/user_list.html")
+#查看会员
+@admin.route("/user/view")
+def user_view():
+	return render_template("admin/user_view.html")
+```
+
+#### 评论管理页面搭建
+
+```
+#评论列表
+@admin.route("/comment/list/")
+def comment_list():
+	return render_template("admin/comment_list.html")
+```
+
+#### 收藏管理页面搭建
+
+```
+#收藏列表
+@admin.route("/moviecol/list/")
+def moviecol_list():
+	return render_template("admin/moviecol_list.html")
+```
+
+#### 操作日志管理页面搭建
+
+```
+#操作日志列表
+@admin.route('/oplog/list/')
+def oplog_list():
+	return render_template("admin/oplog_list.html")
+```
+
+#### 管理员日志管理页面
+
+```
+#管理员日志列表
+@admin.route('/adminloginlog/list/')
+def adminloginlog_list():
+	return render_template("admin/adminloginlog_list.html")
+```
+
+#### 会员日志管理页面
+
+```
+#会员日志列表
+@admin.route('/userloginlog/list/')
+def userloginlog_list():
+	return render_template("admin/userloginlog_list.html")
+```
+
+#### 角色管理页面搭建
+
+```
+#添加角色
+@admin.route('/role/add/')
+def role_add():
+	return render_template("admin/role_add.html")
+#角色列表
+@admin.route('/role/list/')
+def role_list():
+	return render_template("admin/role_list.html")
+```
+
+#### 权限管理页面搭建
+
+```
+#添加权限
+@admin.route('/auth/add/')
+def auth_add():
+	return render_template("admin/auth_add.html")
+#权限列表
+@admin.route('/auth/list/')
+def auth_list():
+	return render_template("admin/auth_list.html")
+```
+
+#### 管理员管理页面搭建
+
+```
+#添加管理员
+@admin.route('/admin/add/')
+def admin_add():
+	return render_template("admin.admin_add.html")
+#管理员列表
+@admin.route('/admin/list/')
+def admin_list():
+	return render_template("admin/admin_list.html")
+```
+
+
+
+#### 管理员登录
+
+```
+1.app/__init__.py中创建db对象
+2.app/models.py中导入db对象
+3.app/admin/forms.py中定义表单验证
+4.app/templates/admin/login.html中使用表单字段、信息验证、消息闪现
+5.app/admin/views.py中处理登录请求，保存会话
+6.app/admin/views.py定义登录装饰器，访问控制
+```
+
+```
+1.模型：Admin
+2.表单：LoginForm
+3.请求方法：GET、POST
+4.访问控制：无
+```
+
